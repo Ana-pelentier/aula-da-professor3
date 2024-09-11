@@ -1,0 +1,23 @@
+-- Tabela de Vendedores
+CREATE TABLE vendedor (
+    nro_vend INTEGER PRIMARY KEY,
+    nome_vend TEXT NOT NULL,
+    sexo_vend TEXT NOT NULL
+);
+
+-- Tabela de Clientes
+CREATE TABLE cliente (
+    nro_cli INTEGER PRIMARY KEY,
+    nome_cli TEXT NOT NULL,
+    end_cli TEXT NOT NULL
+);
+
+-- Tabela de Atendimentos
+CREATE TABLE atendimento (
+    nro_vend INTEGER,
+    nro_cli INTEGER,
+    data_atend DATE NOT NULL,
+    PRIMARY KEY (nro_vend, nro_cli),
+    FOREIGN KEY (nro_vend) REFERENCES vendedor(nro_vend),
+    FOREIGN KEY (nro_cli) REFERENCES cliente(nro_cli)
+);

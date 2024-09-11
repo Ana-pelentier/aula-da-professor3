@@ -1,0 +1,48 @@
+sql
+CREATE TABLE Alunos (
+  matricula INTEGER PRIMARY KEY,
+  nome TEXT,
+  status TEXT,
+  codCurso INTEGER,
+  nomeCurso TEXT
+);
+
+CREATE TABLE Disciplinas (
+  codDisciplina INTEGER PRIMARY KEY,
+  nomeDisciplina TEXT
+);
+
+CREATE TABLE Professores (
+  codProf INTEGER PRIMARY KEY,
+  nomeProf TEXT
+);
+
+CREATE TABLE Notas (
+  codDisciplina INTEGER,
+  matricula INTEGER,
+  nota REAL,
+  faltas INTEGER,
+  situacao TEXT,
+  codProf INTEGER,
+  FOREIGN KEY (codDisciplina) REFERENCES Disciplinas(codDisciplina),
+  FOREIGN KEY (matricula) REFERENCES Alunos(matricula),
+  FOREIGN KEY (codProf) REFERENCES Professores(codProf)
+);
+
+INSERT INTO Alunos (matricula, nome, status, codCurso, nomeCurso) VALUES
+  (123456, 'Maria Joaquina', 'Cursando', 0037, 'Técnico em Informática');
+
+INSERT INTO Disciplinas (codDisciplina, nomeDisciplina) VALUES
+  ('AN001', 'Análise de sistemas'),
+  ('MA002', 'Matemática'),
+  ('IN101', 'Inglês');
+
+INSERT INTO Professores (codProf, nomeProf) VALUES
+  (001, 'Roberto Carlos'),
+  (002, 'Jandira'),
+  (003, 'Junior Villas');
+
+INSERT INTO Notas (codDisciplina, matricula, nota, faltas, situacao, codProf) VALUES
+  ('AN001', 123456, 7.5, 7, 'Aprovado', 001),
+  ('MA002', 123456, 8.0, 4, 'Aprovado', 002),
+  ('IN101', 123456, 4.5, 0, 'Reprovado', 003);
